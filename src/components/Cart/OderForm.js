@@ -1,18 +1,28 @@
 import React from "react";
 import useValidate from "../Hooks/use_invalidate";
+import classes from "./OderForm.module.css";
+import { useCallback } from "react";
 
 const OderForm = () => {
+  const logicFun = useCallback(
+    (input) => (input.trim() === "" ? false : true),
+    []
+  );
+
   const {
     value: enterdName,
     inValid: isNameInValid,
     getInput: onChangeHandler,
-  } = useValidate((input) => (input.trim() === "" ? false : true));
+  } = useValidate(logicFun);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (!isNameInValid) {
+
+    console.log(isNameInValid, enterdName);
+    if (isNameInValid) {
       return;
     }
+
     console.log("dadadadad");
   };
   return (

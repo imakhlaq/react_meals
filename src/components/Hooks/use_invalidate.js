@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 const reducerFn = (prevState, action) => {
   if (action.type === "USER_INP") {
@@ -31,21 +31,23 @@ const useValidate = (logicFun) => {
     inputData: "",
     isInvalid: false,
   });
-  const logicValue = logicFun(currState.inputData);
 
   const getInput = (event) => {
     //previous errot clear
     dispatch({ type: "CLEAR" });
 
     dispatch({ type: "USER_INP", entertedData: event.target.value });
-
-    checkValid();
   };
-  const checkValid = () => {
+
+  useEffect(() => {
+    console.log(currState.inputData);
+    const logicValue = logicFun(currState.inputData);
+
     if (!logicValue) {
       dispatch({ type: "INVALID" });
     }
-  };
+  }, [currState.inputData, logicFun]);
+
   return {
     value: currState.inputData,
     inValid: currState.isInvalid,
