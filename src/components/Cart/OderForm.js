@@ -17,8 +17,6 @@ const OderForm = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
-    console.log(isNameInValid, enterdName);
     if (isNameInValid) {
       return;
     }
@@ -39,7 +37,9 @@ const OderForm = () => {
         <label htmlFor="addresss">Address</label>
         <textarea name="address" id="address" cols="21" rows="3"></textarea>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" className={classes.button} disabled={isNameInValid}>
+        Submit
+      </button>
     </form>
   );
 };

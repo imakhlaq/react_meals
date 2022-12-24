@@ -40,9 +40,7 @@ const useValidate = (logicFun) => {
   };
 
   useEffect(() => {
-    console.log(currState.inputData);
     const logicValue = logicFun(currState.inputData);
-
     if (!logicValue) {
       dispatch({ type: "INVALID" });
     }

@@ -1,3 +1,6 @@
 button :disabled {
   background: red;
 }
+button {
+  background-color: beige;
+}
